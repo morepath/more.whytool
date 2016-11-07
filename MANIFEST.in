@@ -1,0 +1,4 @@
+include .coveragerc
+include *.txt *.rst *.cfg *.py *.ini
+recursive-include more *.py
+recursive-include tests *.py
