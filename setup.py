@@ -29,6 +29,7 @@ setup(name='more.whytool',
           'setuptools',
           'morepath >= 0.15',
           'dectate',
+          'webob',
       ],
       extras_require=dict(
           test=[

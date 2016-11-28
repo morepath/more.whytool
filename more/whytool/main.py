@@ -3,6 +3,8 @@ from __future__ import print_function
 import morepath
 import argparse
 from dectate.tool import parse_app_class
+from webob.exc import HTTPException
+
 
 # XXX how to deal with authorization? passing a header is cumbersome.
 # we could display the permission of the response
@@ -42,9 +44,9 @@ def why_tool(app_class):
             body = f.read()
     else:
         body = None
-    if args.headers:
+    if args.header:
         headers = {}
-        for header in args.headers:
+        for header in args.header:
             key, value = header.split(':', 1)
             headers[key] = value
     else:
@@ -54,4 +56,16 @@ def why_tool(app_class):
                                      headers=headers,
                                      body=body,
                                      app=app)
+    response = app.publish(request)
+    print("Path:")
+    if request.path_code_info is not None:
+        print("   ", request.path_code_info.filelineno())
+        print("   ", request.path_code_info.sourceline)
+    else:
+        print("   ", "No path matched")
+    print("View:")
+    print("   ", request.view_code_info.filelineno())
+    print("   ", request.view_code_info.sourceline)
+    if isinstance(response, HTTPException):
+        print("HTTP Exception:", response.status)
 
