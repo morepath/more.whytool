@@ -7,7 +7,7 @@ was responsible for handling a request.
 To create such a tool you do the following, for instance in the
 ``main.py`` of your project::
 
-  from more.whytool import view_tool
+  from more.whytool import why_tool
   from .someplace import SomeApp
 
   def my_why_tool():
@@ -22,7 +22,7 @@ available::
 
     entry_points={
         'console_scripts': [
-            'morewhytool = myproject.main:why_tool',
+            'morewhytool = myproject.main:my_why_tool',
         ]
     },
 
@@ -30,4 +30,9 @@ After you install your project, you should now have a ``morewhytool``
 tool available. You can give it requests::
 
   $ morewhytool /some/path
-  
+
+It tells you:
+
+* What path directive handled the request.
+
+* What view directive handled the request.
