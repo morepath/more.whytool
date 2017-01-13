@@ -7,7 +7,7 @@ long_description = (
     io.open('CHANGES.txt', encoding='utf-8').read())
 
 setup(name='more.whytool',
-      version='0.5',
+      version='0.6dev0',
       description="What code was responsible for generating a view",
       long_description=long_description,
       author="Martijn Faassen",
